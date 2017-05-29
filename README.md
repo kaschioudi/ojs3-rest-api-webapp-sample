@@ -13,13 +13,16 @@ A recent version of PHP 5.5+
 Dependencies
 ------------
 [Guzzle](https://packagist.org/packages/guzzlehttp/guzzle)
+
 [Slim](https://github.com/slimphp/Slim)
+
 [Twig](https://github.com/slimphp/Twig-View)
 
 Installation
 ------------
-git clone
-composer install
+`git clone`
+
+`composer install`
 
 Configuration
 -------------
