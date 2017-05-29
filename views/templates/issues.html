@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+  <h1>Issue List</h1>
+
+  <div class="list-group">
+    {% for issue in issues %}
+    <a href="/issue/view/{{ issue.id|e }}" class="list-group-item {% if issue.current %} active {% endif %}">
+      <h4 class="list-group-item-heading">{{ issue.title|e }}</h4>
+      <p class="list-group-item-text">
+        <strong>{{ issue.series|e }}</strong><br/>
+        {{ issue.description|striptags }}
+      </p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block breadcrumbs %}
+  {{ parent() }}
+  <li class="active">{{ issue.series|e }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>{{ issue.series|e }}</h2>
+  <p>{{ issue.description|striptags }}</p>
+  <p><strong>Published:</strong> {{ issue.datePublished|date("Y-m-d") }}</p>
+
+  {% for title,items in issue.articles %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ title|e }}</h3>
+    </div>
+
+    <ul class="list-group">
+      {% for item in items %}
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading">
+            <a href="/article/view/{{ item.id|e }}">{{ item.title.en_US|e }}</a>
+          </h4>
+          <div>{{ item.author|e }}</div>
+          {% for galley in item.galleys %}
+            <a class="btn btn-default" href="{{ galley.url }}"><i class="glyphicon glyphicon-book"></i> PDF</a>
+          {% endfor %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

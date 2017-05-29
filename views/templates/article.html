@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block breadcrumbs %}
+  {{ parent() }}
+  <li><a href="/issue/view/{{ article.issueId|e }}">{{ article.issue|e }}</a></li>
+  <li class="active">{{ article.section }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>{{ article.title|e }}</h2>
+  <div class="row">
+    <div class="col-md-8">
+      {% for author in article.authors %}
+      <p>
+        <strong>{{ author.name|e }}</strong><br/>
+        <em>{{ author.affiliation|e }}</em>
+      </p>
+      {% endfor %}
+
+      <div>
+        <h3>Abstract</h3>
+        <p>{{ article.abstract|striptags }}
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <p>
+        {% for galley in article.galleys %}
+        <a class="btn btn-default" href="{{ galley.url }}"><i class="glyphicon glyphicon-book"></i> PDF</a>
+        {% endfor %}
+      </p>
+
+      <hr/>
+
+      <p>
+        Published
+        <p>{{ issue.datePublished|date("Y-m-d") }}</p>
+      </p>
+
+      <hr/>
+
+      <div>
+        How to Cite <br/>
+      </div>
+
+      <hr/>
+
+      <p>
+        Issue
+        <p><a href="/issue/view/{{ article.issueId|e }}">{{ article.issue }}</a></p>
+      </p>
+      <p>
+        Section
+        <p>{{ article.section }}</p>
+      </p>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
